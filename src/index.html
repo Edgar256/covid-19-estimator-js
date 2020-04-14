@@ -1,0 +1,81 @@
+<html lang="en">
+    <head>
+        <title>FaveApp</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="Keywords" content="">            
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>   
+
+        <style>
+            .wrap-inputs{
+                margin: 30px 0px;
+                display: flex;
+            }
+            .wrap-inputs > span{
+                margin: 0px 2px;
+            }
+            .wid{
+                width: 20%;
+            }
+            .btn-wrap{
+                display: flex;
+            }
+            .btn-wrap > .btn{
+                margin: 0 auto;
+                min-width: 200px;
+            }
+
+            @media only screen and (max-width: 425px) {
+                .wid{
+                    width: 100%;
+                }
+                .wrap-inputs{
+                    display: block;
+                }
+                .wrap-inputs > .wid{
+                    padding: 2px 2px;
+                }
+                .wid > input,
+                .wid > select  {
+                    margin: 0px;
+                }
+            }
+        </style>
+    </head>
+
+<body>
+    <div class="container">
+        <div class="mt-20" >
+            <h2 class="text-center">CONVID-19 ESTIMATOR</h2>
+        </div>
+        <div class="wrap-inputs">
+            <span class="wid">
+                <input type="number" class="form-control" data-attribute="population">
+            </span>
+            <span class="wid">
+                <input type="number" class="form-control" data-attribute=" timeToElapse">
+            </span>
+            <span class="wid">
+                <input type="number" class="form-control" data-attribute="reportedCases">
+            </span>
+            <span class="wid">
+                <input type="number" class="form-control" data-attribute="totalHospitalBeds">
+            </span>
+            <span class="wid">
+                <select name="month" id="" class="form-control" data-attribute="periodType">
+                    <option value="month"></option>
+                </select>
+            </span>
+        </div>
+        <div class="btn-wrap">
+            <button class="btn btn-success">
+                CALCULATE
+            </button>
+        </div>
+    </div>    
+</body>
+</html>
