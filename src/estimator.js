@@ -1,10 +1,9 @@
 const covid19ImpactEstimator = (data) => {
-
-    const impact = {...data};
-    const severeImpact = {...data};
+  const impact = { ...data };
+  const severeImpact = { ...data };
     
-    impact.days ; //test days
-    impact.months  ; //test months    
+    impact.days ;
+    impact.months  ; 
 
     //  IMPACT
     impact.currentlyInfected = impact.reportedCases * 10;
@@ -47,15 +46,6 @@ const covid19ImpactEstimator = (data) => {
         }
         
     }
-
-
-    
-    
-
-    // console.log(impact.currentlyInfected);
-    // console.log(severeImpact.currentlyInfected);
-
-    
 
     return{
         data: {}, //the input data you got
