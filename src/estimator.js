@@ -10,9 +10,9 @@ const covid19ImpactEstimator = (data) => {
   //  IMPACT
   impact.currentlyInfected = impact.reportedCases * 10;
 
-  if (impact.days === 0 && impact.months === 0) {
+  if (impact.days <= 0 && impact.months <= 0) {
     // console.log('enter period of duration you want  to consider');
-  } else if (impact.months !== 0) {
+  } else if (impact.months > 0) {
     impact.days = impact.months * 30;
 
     // multiplier = Math.pow(2, Math.trunc(impact.days / 3));
@@ -32,9 +32,9 @@ const covid19ImpactEstimator = (data) => {
 
   severeImpact.currentlyInfected = severeImpact.reportedCases * 50;
 
-  if (severeImpact.days === 0 && severeImpact.months === 0) {
+  if (severeImpact.days <= 0 && severeImpact.months <= 0) {
     // console.log('enter period of duration you want  to consider');
-  } else if (severeImpact.months !== 0) {
+  } else if (severeImpact.months > 0) {
     severeImpact.days = severeImpact.months * 30;
 
     // multiplier = Math.pow(2, Math.trunc(impact.days / 3));
