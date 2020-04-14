@@ -1,8 +1,9 @@
 const covid19ImpactEstimator = (data) => {
-  const impact = { ...data };
-  const severeImpact = { ...data };
+  let impact = { ...data };
+  let severeImpact = { ...data };
 
   impact.days = 0;
+  impact.weeks = 0;
   impact.months = 0;
 
   let multiplier;
@@ -10,47 +11,48 @@ const covid19ImpactEstimator = (data) => {
   //  IMPACT
   impact.currentlyInfected = impact.reportedCases * 10;
 
-  if (impact.days <= 0 && impact.months <= 0) {
-    // console.log('enter period of duration you want  to consider');
+  if (impact.days <= 0 && impact.weeks <= 0 && impact.months <= 0) {
+    impact = { ...data };
   } else if (impact.months > 0) {
     impact.days = impact.months * 30;
-
-    // multiplier = Math.pow(2, Math.trunc(impact.days / 3));
     multiplier = 2 ** Math.trunc(impact.days / 3);
     impact.infectionsByRequestedTime = impact.currentlyInfected * multiplier;
-    // console.log(impact.infectionsByRequestedTime);
+  } else if (impact.weeks > 0) {
+    impact.days = impact.weeks * 7;
+    multiplier = 2 ** Math.trunc(impact.days / 3);
+    impact.infectionsByRequestedTime = impact.currentlyInfected * multiplier;
   } else {
     multiplier = 2 ** Math.trunc(impact.days / 3);
     impact.infectionsByRequestedTime = impact.currentlyInfected * multiplier;
-    // console.log(impact.infectionsByRequestedTime);
   }
 
 
   //   SEVERE IMPACT
   severeImpact.days = 0;
+  severeImpact.weeks = 0;
   severeImpact.month = 0;
 
   severeImpact.currentlyInfected = severeImpact.reportedCases * 50;
 
-  if (severeImpact.days <= 0 && severeImpact.months <= 0) {
-    // console.log('enter period of duration you want  to consider');
+  if (severeImpact.days <= 0 && severeImpact.weeks <= 0 && severeImpact.months <= 0) {
+    severeImpact = { ...data };
   } else if (severeImpact.months > 0) {
     severeImpact.days = severeImpact.months * 30;
-
-    // multiplier = Math.pow(2, Math.trunc(impact.days / 3));
     multiplier = 2 ** Math.trunc(impact.days / 3);
     severeImpact.infectionsByRequestedTime = severeImpact.currentlyInfected * multiplier;
-    // console.log(severeImpact.infectionsByRequestedTime);
+  } else if (severeImpact.weeks > 0) {
+    severeImpact.weeks = severeImpact.months * 7;
+    multiplier = 2 ** Math.trunc(impact.days / 3);
+    severeImpact.infectionsByRequestedTime = impact.currentlyInfected * multiplier;
   } else {
     multiplier = 2 ** Math.trunc(impact.days / 3);
     severeImpact.infectionsByRequestedTime = impact.currentlyInfected * multiplier;
-    // console.log(severeImpact.infectionsByRequestedTime);
   }
 
   return {
     data: {}, // the input data you got
     impact: {}, // your best case estimation
-    severImpact: {} // /severe case estimation
+    severeImpact: {} // /severe case estimation
   };
 };
 
