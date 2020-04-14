@@ -1,59 +1,57 @@
 const covid19ImpactEstimator = (data) => {
   const impact = { ...data };
   const severeImpact = { ...data };
-    
-    impact.days ;
-    impact.months  ; 
 
-    //  IMPACT
-    impact.currentlyInfected = impact.reportedCases * 10;
+  impact.days = 0;
+  impact.months = 0;
 
-    if(impact.days === undefined && impact.months === undefined){
-        console.log('enter period of duration you want  to consider')
-    }else{       
+  let multiplier;
 
-        if(impact.months !== undefined){
-            impact.days = impact.months * 30;
+  //  IMPACT
+  impact.currentlyInfected = impact.reportedCases * 10;
 
-            impact.infectionsByRequestedTime = impact.currentlyInfected * Math.pow(2, Math.trunc(impact.days/3));
-            console.log(impact.infectionsByRequestedTime);
-        }else{
-            impact.infectionsByRequestedTime = impact.currentlyInfected * Math.pow(2, Math.trunc(impact.days/3));
-            console.log(impact.infectionsByRequestedTime);
-        }
-        
-    }
+  if (impact.days === 0 && impact.months === 0) {
+    // console.log('enter period of duration you want  to consider');
+  } else if (impact.months !== 0) {
+    impact.days = impact.months * 30;
+
+    // multiplier = Math.pow(2, Math.trunc(impact.days / 3));
+    multiplier = 2 ** Math.trunc(impact.days / 3);
+    impact.infectionsByRequestedTime = impact.currentlyInfected * multiplier;
+    // console.log(impact.infectionsByRequestedTime);
+  } else {
+    multiplier = 2 ** Math.trunc(impact.days / 3);
+    impact.infectionsByRequestedTime = impact.currentlyInfected * multiplier;
+    // console.log(impact.infectionsByRequestedTime);
+  }
 
 
-    //   SEVERE IMPACT
-    severeImpact.days = 1;
-    severeImpact.month ;
-    
-    severeImpact.currentlyInfected = severeImpact.reportedCases * 50;
+  //   SEVERE IMPACT
+  severeImpact.days = 0;
+  severeImpact.month = 0;
 
-    if(severeImpact.days === undefined && severeImpact.months === undefined){
-        console.log('enter period of duration you want  to consider')
-    }else{       
+  severeImpact.currentlyInfected = severeImpact.reportedCases * 50;
 
-        if(severeImpact.months !== undefined){
-            severeImpact.days = severeImpact.months * 30;
+  if (severeImpact.days === 0 && severeImpact.months === 0) {
+    // console.log('enter period of duration you want  to consider');
+  } else if (severeImpact.months !== 0) {
+    severeImpact.days = severeImpact.months * 30;
 
-            severeImpact.infectionsByRequestedTime = severeImpact.currentlyInfected * Math.pow(2, Math.trunc(impact.days/3));
-            console.log(severeImpact.infectionsByRequestedTime);
-        }else{
-            severeImpact.infectionsByRequestedTime = impact.currentlyInfected * Math.pow(2, Math.trunc(impact.days/3));
-            console.log(severeImpact.infectionsByRequestedTime);
-        }
-        
-    }
+    // multiplier = Math.pow(2, Math.trunc(impact.days / 3));
+    multiplier = 2 ** Math.trunc(impact.days / 3);
+    severeImpact.infectionsByRequestedTime = severeImpact.currentlyInfected * multiplier;
+    // console.log(severeImpact.infectionsByRequestedTime);
+  } else {
+    multiplier = 2 ** Math.trunc(impact.days / 3);
+    severeImpact.infectionsByRequestedTime = impact.currentlyInfected * multiplier;
+    // console.log(severeImpact.infectionsByRequestedTime);
+  }
 
-    return{
-        data: {}, //the input data you got
-        impact: {}, //your best case estimation
-        severImpact: {} ///severe case estimation
-    }
+  return {
+    data: {}, // the input data you got
+    impact: {}, // your best case estimation
+    severImpact: {} // /severe case estimation
+  };
 };
-
-// covid19ImpactEstimator(data);
 
 export default covid19ImpactEstimator;
